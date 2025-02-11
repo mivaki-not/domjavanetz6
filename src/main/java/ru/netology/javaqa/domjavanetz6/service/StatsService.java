@@ -3,8 +3,8 @@ package ru.netology.javaqa.domjavanetz6.service;
 public class StatsService {
 
     // Метод для расчета суммы всех продаж
-    public int calculateTotalSales(long[] sales) {
-        int total = 0;
+    public long calculateTotalSales(long[] sales) {
+        long total = 0;
         for (long sale : sales) {
             total += sale;
         }
@@ -13,7 +13,7 @@ public class StatsService {
 
     // Метод для расчета средней суммы продаж в месяц
     public int calculateAverageSales(long[] sales) {
-        int total = calculateTotalSales(sales);
+        long total = calculateTotalSales(sales);
         return (int) total / sales.length;
     }
 
