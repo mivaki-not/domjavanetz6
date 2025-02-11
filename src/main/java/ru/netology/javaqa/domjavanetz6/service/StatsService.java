@@ -12,13 +12,13 @@ public class StatsService {
     }
 
     // Метод для расчета средней суммы продаж в месяц
-    public int calculateAverageSales(long[] sales) {
+    public long calculateAverageSales(long[] sales) {
         long total = calculateTotalSales(sales);
         return (int) total / sales.length;
     }
 
     // Метод для подсчета количества месяцев, в которых продажи были ниже среднего
-    public int calculateBelowAverageSales(long[] sales) {
+    public long calculateBelowAverageSales(long[] sales) {
         double average = calculateTotalSales(sales);
         int count = 0;
         for (long sale : sales) {
@@ -30,7 +30,7 @@ public class StatsService {
     }
 
     // Метод для подсчета количества месяцев, в которых продажи были выше среднего
-    public int calculateLiveAboveAverage(long[] sales) {
+    public long calculateLiveAboveAverage(long[] sales) {
         double average = calculateTotalSales(sales);
         int count = 0;
         for (long sale : sales) {
@@ -41,7 +41,7 @@ public class StatsService {
         return count;
     }
     // Метод с минимальными продажами среди просмотренных ранее
-    public int calculateMinSales(long[] sales) {
+    public long calculateMinSales(long[] sales) {
         int minMonth = 0;
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] <= sales[minMonth]) { // значит, в рассматриваемом i-м месяце продаж меньше
@@ -53,7 +53,7 @@ public class StatsService {
     }
 
     // Метод с максимальными продажами среди просмотренных ранее
-    public int calculateMaxSales(long[] sales) {
+    public long calculateMaxSales(long[] sales) {
         int maxMonth = 0;
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] >= sales[maxMonth]) { // значит, в рассматриваемом i-м месяце продаж меньше
