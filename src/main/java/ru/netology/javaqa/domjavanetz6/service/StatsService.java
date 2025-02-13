@@ -13,25 +13,24 @@ public class StatsService {
 
     // Метод для расчета средней суммы продаж в месяц
     public long calculateAverageSales(long[] sales) {
-        long total = calculateTotalSales(sales);
-        return (int) total / sales.length;
+        return calculateTotalSales(sales) / 12;
     }
 
-    // Метод для подсчета количества месяцев, в которых продажи были ниже среднего
-    public long calculateBelowAverageSales(long[] sales) {
-        double average = calculateTotalSales(sales);
+    // Метод для подсчета количество месяцев, в которых продажи были ниже среднего
+    public int calculateBelowAverageSales(long[] sales) {
+        long average = calculateAverageSales(sales);
         int count = 0;
         for (long sale : sales) {
-            if (sale < average) {
+            if (sale <= average) {
                 count++;
             }
         }
         return count;
     }
 
-    // Метод для подсчета количества месяцев, в которых продажи были выше среднего
-    public long calculateLiveAboveAverage(long[] sales) {
-        double average = calculateTotalSales(sales);
+    // Метод для подсчета количество месяцев, в которых продажи были выше среднего
+    public int calculateLiveAboveAverage(long[] sales) {
+        long average = calculateAverageSales(sales);
         int count = 0;
         for (long sale : sales) {
             if (sale > average) {
@@ -40,8 +39,8 @@ public class StatsService {
         }
         return count;
     }
-    // Метод с минимальными продажами среди просмотренных ранее
-    public long calculateMinSales(long[] sales) {
+    // Метод для подсчета номера месяца, в котором был минимум продаж, то есть осуществлены продажи на минимальную сумму
+    public int calculateMinSales(long[] sales) {
         int minMonth = 0;
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] <= sales[minMonth]) { // значит, в рассматриваемом i-м месяце продаж меньше
@@ -52,8 +51,8 @@ public class StatsService {
         return minMonth + 1; // месяца нумеруются с 1, а индексы массива с 0, нужно сдвинуть ответ на 1
     }
 
-    // Метод с максимальными продажами среди просмотренных ранее
-    public long calculateMaxSales(long[] sales) {
+    // Метод для подсчета номера месяца, в котором был пик продаж, то есть осуществлены продажи на максимальную сумму
+    public int calculateMaxSales(long[] sales) {
         int maxMonth = 0;
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] >= sales[maxMonth]) { // значит, в рассматриваемом i-м месяце продаж меньше
